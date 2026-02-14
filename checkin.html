@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey, Just Checking In 💫</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --warm-peach: #FFE5D4;
+            --coral: #FF9B82;
+            --deep-coral: #FF6B4A;
+            --warm-cream: #FFF8F3;
+            --soft-gray: #6B5B5B;
+            --accent-gold: #FFD700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--warm-peach) 50%, #FFD4C4 100%);
+            color: var(--soft-gray);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating memories animation */
+        .floating-memories {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .memory {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .memory:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .memory:nth-child(2) { left: 80%; top: 30%; animation-delay: 3s; }
+        .memory:nth-child(3) { left: 50%; top: 60%; animation-delay: 6s; }
+        .memory:nth-child(4) { left: 20%; top: 70%; animation-delay: 9s; }
+        .memory:nth-child(5) { left: 70%; top: 80%; animation-delay: 12s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 50px;
+            box-shadow: 0 20px 60px rgba(255, 107, 74, 0.15);
+            border: 2px solid rgba(255, 155, 130, 0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 4rem;
+            color: var(--deep-coral);
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.2;
+            animation: fadeIn 1.5s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--coral);
+            margin-bottom: 40px;
+            font-weight: 300;
+            animation: fadeIn 1.5s ease-out 0.6s backwards;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: var(--soft-gray);
+            animation: fadeIn 1.5s ease-out 0.9s backwards;
+        }
+
+        .highlight {
+            color: var(--deep-coral);
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--coral);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .highlight:hover::after {
+            transform: scaleX(1);
+        }
+
+        .interactive-section {
+            margin: 50px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 155, 130, 0.1), rgba(255, 215, 0, 0.1));
+            border-radius: 20px;
+            border: 2px dashed var(--coral);
+            animation: fadeIn 1.5s ease-out 1.2s backwards;
+        }
+
+        .interactive-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: var(--deep-coral);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .memory-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .memory-btn {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--coral);
+            border-radius: 50px;
+            color: var(--coral);
+            font-family: 'Crimson Pro', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 74, 0.2);
+        }
+
+        .memory-btn:hover {
+            background: var(--coral);
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 74, 0.4);
+        }
+
+        .memory-display {
+            min-height: 80px;
+            padding: 20px;
+            margin-top: 20px;
+            background: white;
+            border-radius: 15px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: var(--deep-coral);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .memory-display.show {
+            opacity: 1;
+        }
+
+        .response-section {
+            margin-top: 50px;
+            animation: fadeIn 1.5s ease-out 1.5s backwards;
+        }
+
+        .response-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: var(--deep-coral);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 20px;
+            border: 2px solid var(--coral);
+            border-radius: 15px;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            color: var(--soft-gray);
+            resize: vertical;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--deep-coral);
+            box-shadow: 0 0 20px rgba(255, 107, 74, 0.2);
+            background: white;
+        }
+
+        .send-btn {
+            display: block;
+            margin: 20px auto 0;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--coral), var(--deep-coral));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 107, 74, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 74, 0.5);
+        }
+
+        .send-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .heart-pulse {
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: var(--coral);
+            opacity: 0.8;
+            animation: fadeIn 2s ease-out 1.8s backwards;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 40px 20px; }
+            .card { padding: 40px 30px; }
+            h1 { font-size: 3rem; }
+            .subtitle { font-size: 1.1rem; }
+            .message { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-memories">
+        <div class="memory">✨</div>
+        <div class="memory">💫</div>
+        <div class="memory">🌟</div>
+        <div class="memory">⭐</div>
+        <div class="memory">💝</div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h1>Hey, it's been a while... <span class="heart-pulse">💛</span></h1>
+            <p class="subtitle">Just wanted to reach out and see how you're doing</p>
+
+            <div class="message">
+                <p>It's been a bit since we last talked, and honestly, I've been thinking about you. We spent <span class="highlight">5 amazing years</span> together as friends, and those memories mean everything to me.</p>
+                
+                <p style="margin-top: 20px;">I know life gets busy and things change, but I just wanted to check in and make sure you're okay. You're not just any friend – <span class="highlight">you're the best friend I've ever had</span>, and that doesn't just disappear.</p>
+                
+                <p style="margin-top: 20px;">No pressure at all, just... let me know you're alright? Even a simple "hey" would mean the world. <span class="heart-pulse">💙</span></p>
+            </div>
+
+            <div class="interactive-section">
+                <h3 class="interactive-title">Remember these? ✨</h3>
+                <p style="text-align: center; margin-bottom: 15px; color: var(--soft-gray);">Click to relive some memories...</p>
+                <div class="memory-buttons">
+                    <button class="memory-btn" onclick="showMemory(0)">Late night talks</button>
+                    <button class="memory-btn" onclick="showMemory(1)">Inside jokes</button>
+                    <button class="memory-btn" onclick="showMemory(2)">Adventures together</button>
+                    <button class="memory-btn" onclick="showMemory(3)">Being there</button>
+                </div>
+                <div class="memory-display" id="memoryDisplay"></div>
+            </div>
+
+            <div class="response-section">
+                <h3 class="response-title">Wanna say hi? 💌</h3>
+                <textarea placeholder="Hey! I'm doing okay... 😊" id="responseText"></textarea>
+                <button class="send-btn" onclick="handleResponse()">Send a Message ✨</button>
+            </div>
+
+            <div class="footer">
+                Made with love and a little bit of worry 💛<br>
+                Because 5 years of friendship is worth checking in on
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const memories = [
+            "Those 3 AM conversations where we solved the world's problems (or just talked nonsense) 🌙",
+            "All those jokes only we understand... and probably no one else ever will 😂",
+            "The random adventures we went on, even if it was just grabbing food or walking around 🚶‍♀️",
+            "Being there for each other through everything – the good, the bad, and the weird ❤️"
+        ];
+
+        function showMemory(index) {
+            const display = document.getElementById('memoryDisplay');
+            display.textContent = memories[index];
+            display.classList.remove('show');
+            setTimeout(() => display.classList.add('show'), 50);
+        }
+
+        function handleResponse() {
+            const text = document.getElementById('responseText').value;
+            if (text.trim()) {
+                alert('Your message has been saved! 💛\n\nThank you for letting me know you\'re okay. It really means a lot. 🌟');
+                // In a real implementation, this would send the message somewhere
+                console.log('Message:', text);
+            } else {
+                alert('Write something so I know you\'re there! Even just "hey" works 😊');
+            }
+        }
+    </script>
+</body>
+</html>
